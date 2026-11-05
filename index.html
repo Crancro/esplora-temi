@@ -5,70 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Esplora un tema</title>
 <style>
-:root{--bg:#fbfbfd;--fg:#14213d;--mut:#5b6478;--card:#fff;--line:#d9dde6;--persona:#3b5bdb;--azienda:#d9480f;--community:#0b8a68}
-@media(prefers-color-scheme:dark){:root{--bg:#10131c;--fg:#eef0f6;--mut:#9aa3b8;--card:#171b27;--line:#2b3144;--persona:#8ea5ff;--azienda:#ff9462;--community:#4fd1a5}}
+:root{--bg:#f7f8fb;--fg:#10182e;--mut:#566079;--card:#fff;--line:#d5dae6;--persona:#3451d1;--azienda:#cf4a0c;--community:#0a8566;--hero:#e9edf9}
+@media(prefers-color-scheme:dark){:root{--bg:#0f121b;--fg:#eef0f7;--mut:#9ba5bd;--card:#171b28;--line:#2a3045;--persona:#8fa6ff;--azienda:#ff9a68;--community:#52d3a8;--hero:#161b2c}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Avenir Next","Segoe UI",system-ui,sans-serif}
-main{max-width:980px;margin:0 auto;padding:32px 20px 64px}
-h1{font-size:2rem;line-height:1.15;margin:0 0 6px;letter-spacing:-.02em}
-h2{font-size:1.25rem;margin:36px 0 12px}
-p{max-width:68ch}
-.mut{color:var(--mut)}
-form{display:flex;gap:8px;margin:18px 0 10px}
-input{flex:1;font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "Avenir Next","Segoe UI",system-ui,sans-serif}
+.hero{background:var(--hero);border-bottom:1px solid var(--line)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.hero .wrap{padding-top:44px;padding-bottom:30px}
+h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:0 0 8px}
+h2{font-size:1.6rem;margin:0}
+h3{margin:0 0 6px;font-size:1.05rem}
+p{max-width:70ch;margin:0 0 10px}
+.mut,.note{color:var(--mut)}.note{font-size:.88rem}
+form{display:flex;gap:8px;margin:20px 0 14px;max-width:640px}
+input{flex:1;font:inherit;font-size:1.05rem;padding:14px 16px;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg)}
 button{font:inherit;cursor:pointer}
-form button{padding:12px 18px;border:0;border-radius:6px;background:var(--fg);color:var(--bg);font-weight:600}
+form button{padding:0 22px;border:0;border-radius:6px;background:var(--fg);color:var(--bg);font-weight:600}
 :focus-visible{outline:3px solid var(--persona);outline-offset:2px}
-.chips button{margin:0 6px 6px 0;padding:4px 12px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--fg)}
-.intro{display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;margin-top:8px}
-.intro h3{margin:0 0 4px;font-size:1rem}
-@media(max-width:700px){.intro{grid-template-columns:1fr}}
-.src{margin:14px 0 0;padding-left:18px;font-size:.9rem}
-a{color:var(--persona)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.tile{display:block;width:100%;text-align:left;padding:14px 16px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:4px}
-.tile:hover{border-color:var(--c)}
-.tile b{display:block;font-size:1.05rem}
-.tile .t{color:var(--c);font-weight:600;font-size:.88rem}
-.tile p{margin:6px 0 0;font-size:.92rem;color:var(--mut);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chips button{margin:0 6px 6px 0;padding:3px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--fg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 0;font-size:.92rem}
+.k::before{content:"";display:inline-block;width:12px;height:12px;margin-right:6px;border-radius:2px;background:var(--c)}
 .person{--c:var(--persona)}.company{--c:var(--azienda)}.community{--c:var(--community)}
-dialog{width:min(560px,92vw);padding:24px;border:0;border-top:10px solid var(--c);border-radius:6px;background:var(--card);color:var(--fg)}
-dialog::backdrop{background:rgba(10,14,25,.55)}
-dialog h2{margin:0 0 4px}
-dialog .x{float:right;border:0;background:none;color:var(--fg);font-size:1.6rem;line-height:1}
-.badge{display:inline-block;padding:2px 10px;border:1px solid var(--c);border-radius:99px;font-size:.85rem;margin-right:6px}
-.note{font-size:.85rem;color:var(--mut)}
+main{padding-top:30px;padding-bottom:64px}
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:6px 36px;margin:16px 0 8px;font-size:1.05rem}
+@media(max-width:700px){.intro{grid-template-columns:1fr}}
+details{font-size:.9rem;color:var(--mut)}summary{cursor:pointer}
+details ul{margin:6px 0 0;padding-left:18px}
+a{color:var(--persona)}
+.gh{display:flex;align-items:center;gap:10px;margin:40px 0 14px;padding-bottom:8px;border-bottom:3px solid var(--c)}
+.gh span{color:var(--mut);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.tile{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:16px 16px 14px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:4px}
+.tile:hover{border-color:var(--c)}
+.tile .t{color:var(--c);font-weight:700;font-size:.9rem}
+.tile b{font-size:1.12rem;line-height:1.25}
+.tile .h{color:var(--mut);font-size:.85rem}
+.tile p{margin:4px 0 6px;font-size:.93rem;color:var(--mut);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pills{margin-top:auto}
+.pill{display:inline-block;margin-right:6px;padding:1px 9px;border:1px solid var(--line);border-radius:99px;font-size:.78rem;color:var(--mut)}
+dialog{width:min(580px,92vw);max-height:88vh;padding:26px;border:0;border-top:10px solid var(--c);border-radius:6px;background:var(--card);color:var(--fg)}
+dialog::backdrop{background:rgba(8,12,24,.6)}
+dialog h2{font-size:1.5rem;margin:0 0 8px}
+dialog .x{float:right;border:0;background:none;color:var(--fg);font-size:1.7rem;line-height:1}
+dialog .pill{border-color:var(--c);color:var(--fg)}
+blockquote{margin:6px 0 12px;padding:8px 14px;border-left:4px solid var(--c);background:var(--bg);font-size:.92rem;color:var(--mut)}
+dialog ul{padding-left:18px}
 footer{margin-top:48px;font-size:.85rem;color:var(--mut)}
 </style>
 </head>
 <body>
-<main>
+<header class="hero"><div class="wrap">
 <h1>Esplora un tema</h1>
-<p class="mut">Scegli un argomento e scopri cos'è, chi ne parla e chi seguire per approfondire.</p>
+<p class="mut">Cerca un argomento e scopri cos'è, da dove nasce e chi seguire per approfondire.</p>
 <form id="f"><input id="q" type="search" placeholder="Cerca un tema, per esempio vibecoding" aria-label="Cerca un tema" autocomplete="off"><button>Cerca</button></form>
 <div class="chips" id="chips"></div>
+<p class="legend"><span class="k person">Persone</span><span class="k company">Aziende</span><span class="k community">Community</span></p>
+</div></header>
+<main class="wrap">
 <p id="msg" class="mut" role="status"></p>
 <section id="topic" hidden></section>
 <footer id="foot" hidden>Le informazioni arrivano da fonti pubbliche e sono raccolte in automatico: possono contenere errori. Per segnalare un errore o chiedere la rimozione di un profilo, <span id="contact">scrivi a chi gestisce il sito</span>.</footer>
 </main>
 <dialog id="dlg"></dialog>
+<script src="config.js"></script>
 <script>
-// Impostazioni: la chiave pubblica (publishable) si trova in Supabase, Settings, API Keys. Non usare mai la chiave secret.
-const SUPABASE_URL='https://xntudikezrmnmakdxtnt.supabase.co';
-const SUPABASE_KEY='sb_publishable_OzYsWAtM8CtEEvmD_a2XOQ_qKivz6tw';
-const CONTACT_EMAIL='';
+const C=window.APP_CONFIG||{};
+const SUPABASE_URL=C.SUPABASE_URL||'',SUPABASE_KEY=C.SUPABASE_KEY||'',CONTACT_EMAIL=C.CONTACT_EMAIL||'';
 const GROUPS=[['person','Persone','Persona'],['company','Aziende','Azienda'],['community','Community','Community']];
-const STATUS={verified:'Verificato',promising:'Promettente, da verificare',unverified:'Non verificato'};
+const STATUS={verified:'Verificato',promising:'Da verificare',unverified:'Non verificato'};
 const $=s=>document.querySelector(s);
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const safe=u=>{try{const x=new URL(u);return /^https?:$/.test(x.protocol)?x.href:null}catch(e){return null}};
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}};
 const link=(u,t)=>{const h=safe(u);if(!h)return el('span','',t||'');const a=el('a','',t||h);a.href=h;a.target='_blank';a.rel='noopener noreferrer nofollow';return a};
 const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const api=async p=>{const r=await fetch(SUPABASE_URL+'/rest/v1/'+p,{headers:{apikey:SUPABASE_KEY}});if(!r.ok)throw new Error(r.status);return r.json()};
 let topics=[];
 
 async function init(){
-  if(SUPABASE_KEY.startsWith('INCOLLA')){$('#msg').textContent='Manca la chiave pubblica nel file index.html (riga SUPABASE_KEY).';return}
+  if(!SUPABASE_URL||!SUPABASE_KEY||SUPABASE_KEY.startsWith('INCOLLA')){$('#msg').textContent='Manca la configurazione: controlla il file config.js.';return}
   try{topics=await api('topics?select=id,name,slug,summary,origin,intro_sources&order=name')}
   catch(e){$('#msg').textContent='Non riesco a leggere i dati. Riprova tra qualche minuto.';return}
   topics.forEach(t=>{const b=el('button','',t.name);b.type='button';b.onclick=()=>openTopic(t);$('#chips').append(b)});
@@ -87,7 +103,7 @@ $('#f').onsubmit=e=>{
 async function openTopic(t){
   $('#msg').textContent='Carico i risultati…';
   let ents=[];
-  try{ents=await api('entities?select=id,entity_type,name,description,website_url,language,verification_status,first_seen,sources(title,url)&topic_id=eq.'+encodeURIComponent(t.id)+'&order=created_at')}
+  try{ents=await api('entities?select=id,entity_type,name,description,website_url,language,verification_status,first_seen,sources(title,url,snippet)&topic_id=eq.'+encodeURIComponent(t.id)+'&order=created_at')}
   catch(e){$('#msg').textContent='Non riesco a leggere i risultati. Riprova tra qualche minuto.';return}
   $('#msg').textContent='';
   const box=$('#topic');box.replaceChildren();
@@ -97,18 +113,21 @@ async function openTopic(t){
   const b=el('div');b.append(el('h3','','Da dove nasce'),el('p','',t.origin||'Informazioni non ancora disponibili.'));
   intro.append(a,b);box.append(intro);
   if(Array.isArray(t.intro_sources)&&t.intro_sources.length){
-    const ul=el('ul','src');t.intro_sources.forEach(s=>{const li=el('li');li.append(link(s.url,s.title));ul.append(li)});
-    box.append(el('p','note','Fonti di questa introduzione:'),ul);
+    const d=el('details'),s=el('summary','','Fonti dell\'introduzione ('+t.intro_sources.length+')');
+    const ul=el('ul');t.intro_sources.forEach(r=>{const li=el('li');li.append(link(r.url,r.title));ul.append(li)});
+    d.append(s,ul);box.append(d);
   }
   GROUPS.forEach(([type,plural,one])=>{
     const items=ents.filter(x=>x.entity_type===type).slice(0,5);
-    box.append(el('h2',null,plural));
+    const h=el('div','gh '+type);h.append(el('h2','',plural),el('span','',items.length?items.length+(items.length===1?' risultato':' risultati'):''));box.append(h);
     if(!items.length){box.append(el('p','mut','Ancora nessun risultato in questa categoria.'));return}
     const g=el('div','grid');
     items.forEach(x=>{
-      const b=el('button','tile '+type);b.type='button';
-      b.append(el('span','t',one),el('b','',x.name),el('p','',x.description||''));
-      b.onclick=()=>openEntity(x,one);g.append(b);
+      const k=el('button','tile '+type);k.type='button';
+      const pills=el('span','pills');pills.append(el('span','pill',STATUS[x.verification_status]||'Non verificato'));
+      if(x.language)pills.append(el('span','pill',x.language.toUpperCase()));
+      k.append(el('span','t',one),el('b','',x.name),el('span','h',host(x.website_url)),el('p','',x.description||''),pills);
+      k.onclick=()=>openEntity(x,one);g.append(k);
     });
     box.append(g);
   });
@@ -119,12 +138,14 @@ function openEntity(x,one){
   const d=$('#dlg');d.className=x.entity_type;d.replaceChildren();
   const close=el('button','x','×');close.type='button';close.setAttribute('aria-label','Chiudi');close.onclick=()=>d.close();
   d.append(close,el('h2',null,x.name));
-  const meta=el('p');meta.append(el('span','badge',one),el('span','badge',STATUS[x.verification_status]||'Non verificato'));d.append(meta);
-  if(x.description){d.append(el('p',null,x.description),el('p','note','Sintesi generata in automatico dalle fonti qui sotto.'))}
-  if(x.website_url){const p=el('p');p.append('Sito: ',link(x.website_url));d.append(p)}
-  if(x.language)d.append(el('p','note','Lingua: '+x.language.toUpperCase()));
-  if(x.first_seen)d.append(el('p','note','Trovato il '+new Date(x.first_seen).toLocaleDateString('it-IT')));
+  const meta=el('p');meta.append(el('span','pill',one),el('span','pill',STATUS[x.verification_status]||'Non verificato'));
+  if(x.language)meta.append(el('span','pill',x.language.toUpperCase()));
+  d.append(meta);
+  if(x.description)d.append(el('p',null,x.description),el('p','note','Sintesi generata in automatico dalle fonti qui sotto.'));
   const s=x.sources||[];
+  if(s[0]&&s[0].snippet){d.append(el('h3','','Dalla pagina trovata'),el('blockquote','',s[0].snippet+'…'))}
+  if(x.website_url){const p=el('p');p.append('Sito: ',link(x.website_url));d.append(p)}
+  if(x.first_seen)d.append(el('p','note','Trovato il '+new Date(x.first_seen).toLocaleDateString('it-IT')));
   if(s.length){d.append(el('h3','','Fonti'));const ul=el('ul');s.forEach(r=>{const li=el('li');li.append(link(r.url,r.title||r.url));ul.append(li)});d.append(ul)}
   d.showModal();
 }
